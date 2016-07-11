@@ -116,6 +116,11 @@ class ElementHelper
                 {
                     $meta['description'] = trim($match[1]);
                 }
+                
+                if (preg_match('/@Icon (.*)/', $comment_line, $match))
+                {
+                    $meta['icon'] = trim($match[1]);
+                }
             }
         }
 
@@ -150,6 +155,7 @@ class ElementHelper
             'static' => 1,
             'static_file' => str_replace(MODX_BASE_PATH, '', $path),
             'description' => (isset($meta['description']) ? $meta['description'] : ''),
+            'icon' => (isset($meta['icon']) ? $meta['icon'] : ''),
             'content' => $content,
             'category' => (isset($category) ? $category->get_property('id') : null)
         );
